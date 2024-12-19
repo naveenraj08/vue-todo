@@ -10,7 +10,12 @@ export default {
             this.todoValue = e.target.value;
         },
         dispatchTodo() {
-            this.$emit('todoListItem', this.todoValue);
+            this.$emit('todoListItem',
+            {
+                id: Math.random().toString(36).substr(2, 9),
+                todo: this.todoValue,
+                isCompleted: false,
+            });
             this.todoValue = '';
         }
     }
