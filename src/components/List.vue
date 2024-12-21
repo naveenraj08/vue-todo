@@ -7,11 +7,10 @@ export default {
     },
   },
 
-
-  data(){
-    return{
+  data() {
+    return {
       newTodo: this.data.todo,
-    }
+    };
   },
 
   methods: {
@@ -33,18 +32,18 @@ export default {
       });
     },
 
-    updateToNewTodo(e){
+    updateToNewTodo(e) {
       let inputValue = e.target.value;
       this.newTodo = inputValue.trim();
     },
 
-    dispatchNewTodo(id){
+    dispatchNewTodo(id) {
       this.$emit("updateNewTodo", {
         id: id,
         todo: this.newTodo,
         isEdit: false,
       });
-    }
+    },
   },
 };
 </script>
@@ -59,18 +58,24 @@ export default {
         class="break-words flex-1"
         :class="{ 'line-through': data.isCompleted }"
       >
-          <form class="flex items-center gap-5 w-full" @submit.prevent="dispatchNewTodo(data.id)">
-            <input v-if="data.isEdit"
-              type="text"
-              name="new-todo"
-              id="new-todo"
-              class="block rounded-md bg-white w-full p-4 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#42B883] sm:text-sm/6"
-              :value="data.todo"
-              @input="updateToNewTodo"
-              :readonly="!data.isEdit"
-            />
-            <span class="block break-all" v-if="!data.isEdit">{{ data.todo }}</span>
-          </form>
+        <form
+          class="flex items-center gap-5 w-full"
+          @submit.prevent="dispatchNewTodo(data.id)"
+        >
+          <input
+            v-if="data.isEdit"
+            type="text"
+            name="new-todo"
+            id="new-todo"
+            class="block rounded-md bg-white w-full p-4 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#42B883] sm:text-sm/6"
+            :value="data.todo"
+            @input="updateToNewTodo"
+            :readonly="!data.isEdit"
+          />
+          <span class="block break-all" v-if="!data.isEdit">{{
+            data.todo
+          }}</span>
+        </form>
       </div>
       <div class="inline-flex space-x-2">
         <button
